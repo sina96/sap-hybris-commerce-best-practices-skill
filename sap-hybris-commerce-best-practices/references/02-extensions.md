@@ -27,33 +27,33 @@ SAP Commerce is built on an **extension-based architecture** where functionality
 ### Standard Directory Layout
 ```
 mycompany/
-├── bin/
-│   └── custom/
-│       ├── mycompanycore/              # Core extension
-│       │   ├── src/                    # Java source code
-│       │   ├── resources/              # Configuration, ImpEx, i18n
-│       │   │   ├── mycompanycore-items.xml
-│       │   │   ├── mycompanycore-spring.xml
-│       │   │   ├── localization/
-│       │   │   └── impex/
-│       │   ├── testsrc/                # Unit tests
-│       │   ├── web/                    # Web resources (if applicable)
-│       │   ├── extensioninfo.xml       # Extension metadata
-│       │   ├── project.properties      # Build configuration
-│       │   └── build.xml               # Ant build script
-│       │
-│       ├── mycompanyfacades/           # Facades extension
-│       │   ├── src/
-│       │   ├── resources/
-│       │   ├── testsrc/
-│       │   └── extensioninfo.xml
-│       │
-│       └── mycompanystorefront/        # Storefront extension
-│           ├── web/
-│           │   ├── src/                # Controllers
-│           │   └── webroot/            # JSP, CSS, JS
-│           ├── resources/
-│           └── extensioninfo.xml
+|-- bin/
+|   `-- custom/
+|       |-- mycompanycore/              # Core extension
+|       |   |-- src/                    # Java source code
+|       |   |-- resources/              # Configuration, ImpEx, i18n
+|       |   |   |-- mycompanycore-items.xml
+|       |   |   |-- mycompanycore-spring.xml
+|       |   |   |-- localization/
+|       |   |   `-- impex/
+|       |   |-- testsrc/                # Unit tests
+|       |   |-- web/                    # Web resources (if applicable)
+|       |   |-- extensioninfo.xml       # Extension metadata
+|       |   |-- project.properties      # Build configuration
+|       |   `-- build.xml               # Ant build script
+|       |
+|       |-- mycompanyfacades/           # Facades extension
+|       |   |-- src/
+|       |   |-- resources/
+|       |   |-- testsrc/
+|       |   `-- extensioninfo.xml
+|       |
+|       `-- mycompanystorefront/        # Storefront extension
+|           |-- web/
+|           |   |-- src/                # Controllers
+|           |   `-- webroot/            # JSP, CSS, JS
+|           |-- resources/
+|           `-- extensioninfo.xml
 ```
 
 ## Creating a Core Extension
@@ -251,19 +251,19 @@ Add your extension to the local extensions list:
 ### Dependency Graph Example
 ```
 mycompanycore
-    ├── core (platform)
-    ├── commerceservices
-    └── basecommerce
+|-- core (platform)
+|-- commerceservices
+`-- basecommerce
 
 mycompanyfacades
-    ├── mycompanycore
-    ├── commercefacades
-    └── converters
+|-- mycompanycore
+|-- commercefacades
+`-- converters
 
 mycompanystorefront
-    ├── mycompanyfacades
-    ├── acceleratorstorefrontcommons
-    └── addonsupport
+|-- mycompanyfacades
+|-- acceleratorstorefrontcommons
+`-- addonsupport
 ```
 
 ### Best Practices for Dependencies
@@ -364,7 +364,7 @@ After building, perform system update to apply schema changes:
 
 1. **Via HAC** (Hybris Administration Console):
    - Navigate to: http://localhost:9001/hac
-   - Platform → Update → Update running system
+   - Platform -> Update -> Update running system
 
 2. **Via Ant**:
    ```bash
@@ -386,64 +386,64 @@ After building, perform system update to apply schema changes:
 ### Core Extension Template
 ```
 mycompanycore/
-├── src/
-│   └── com/mycompany/core/
-│       ├── constants/
-│       │   └── MycompanyCoreConstants.java
-│       ├── service/
-│       │   ├── MycompanyService.java
-│       │   └── impl/
-│       │       └── DefaultMycompanyService.java
-│       ├── dao/
-│       │   ├── MycompanyDao.java
-│       │   └── impl/
-│       │       └── DefaultMycompanyDao.java
-│       ├── event/
-│       ├── interceptor/
-│       ├── job/
-│       └── setup/
-│           └── MycompanyCoreSystemSetup.java
-├── resources/
-│   ├── mycompanycore-items.xml
-│   ├── mycompanycore-spring.xml
-│   ├── localization/
-│   │   └── mycompanycore-locales_en.properties
-│   └── impex/
-│       ├── essential-data.impex
-│       └── sample-data.impex
-├── testsrc/
-│   └── com/mycompany/core/
-│       └── service/
-│           └── MycompanyServiceTest.java
-├── extensioninfo.xml
-├── project.properties
-└── build.xml
+|-- src/
+|   `-- com/mycompany/core/
+|       |-- constants/
+|       |   `-- MycompanyCoreConstants.java
+|       |-- service/
+|       |   |-- MycompanyService.java
+|       |   `-- impl/
+|       |       `-- DefaultMycompanyService.java
+|       |-- dao/
+|       |   |-- MycompanyDao.java
+|       |   `-- impl/
+|       |       `-- DefaultMycompanyDao.java
+|       |-- event/
+|       |-- interceptor/
+|       |-- job/
+|       `-- setup/
+|           `-- MycompanyCoreSystemSetup.java
+|-- resources/
+|   |-- mycompanycore-items.xml
+|   |-- mycompanycore-spring.xml
+|   |-- localization/
+|   |   `-- mycompanycore-locales_en.properties
+|   `-- impex/
+|       |-- essential-data.impex
+|       `-- sample-data.impex
+|-- testsrc/
+|   `-- com/mycompany/core/
+|       `-- service/
+|           `-- MycompanyServiceTest.java
+|-- extensioninfo.xml
+|-- project.properties
+`-- build.xml
 ```
 
 ### Facades Extension Template
 ```
 mycompanyfacades/
-├── src/
-│   └── com/mycompany/facades/
-│       ├── facade/
-│       │   ├── MycompanyFacade.java
-│       │   └── impl/
-│       │       └── DefaultMycompanyFacade.java
-│       ├── data/
-│       │   └── MycompanyData.java
-│       ├── converter/
-│       │   └── MycompanyConverter.java
-│       └── populators/
-│           └── MycompanyPopulator.java
-├── resources/
-│   └── mycompanyfacades-spring.xml
-├── testsrc/
-└── extensioninfo.xml
+|-- src/
+|   `-- com/mycompany/facades/
+|       |-- facade/
+|       |   |-- MycompanyFacade.java
+|       |   `-- impl/
+|       |       `-- DefaultMycompanyFacade.java
+|       |-- data/
+|       |   `-- MycompanyData.java
+|       |-- converter/
+|       |   `-- MycompanyConverter.java
+|       `-- populators/
+|           `-- MycompanyPopulator.java
+|-- resources/
+|   `-- mycompanyfacades-spring.xml
+|-- testsrc/
+`-- extensioninfo.xml
 ```
 
 ## Best Practices
 
-### ✅ DO
+### DO
 - Use `extgen` to generate extension scaffolding
 - Follow standard directory structure
 - Declare all dependencies in `extensioninfo.xml`
@@ -455,7 +455,7 @@ mycompanyfacades/
 - Run `ant clean all` after items.xml changes
 - Perform system update after schema changes
 
-### ❌ DON'T
+### DON'T
 - Modify platform or accelerator extensions directly
 - Create circular dependencies
 - Mix concerns (e.g., web logic in core)
@@ -470,11 +470,11 @@ mycompanyfacades/
 
 ### 1. Missing Dependencies
 ```xml
-<!-- ❌ Wrong: Missing required dependency -->
+<!-- Wrong: Missing required dependency -->
 <requires-extension name="commerceservices"/>
 <!-- But using classes from basecommerce -->
 
-<!-- ✅ Correct: Declare all dependencies -->
+<!-- Correct: Declare all dependencies -->
 <requires-extension name="core"/>
 <requires-extension name="commerceservices"/>
 <requires-extension name="basecommerce"/>
@@ -482,20 +482,20 @@ mycompanyfacades/
 
 ### 2. Circular Dependencies
 ```
-❌ Wrong:
-mycompanycore → mycompanyfacades → mycompanycore
+Wrong:
+mycompanycore -> mycompanyfacades -> mycompanycore
 
-✅ Correct:
-mycompanycore → mycompanyfacades → mycompanystorefront
+Correct:
+mycompanycore -> mycompanyfacades -> mycompanystorefront
 ```
 
 ### 3. Skipping System Update
 ```bash
-# ❌ Wrong: Build without system update
+# Wrong: Build without system update
 ant clean all
 # Start server - schema changes not applied!
 
-# ✅ Correct: Build and update
+# Correct: Build and update
 ant clean all
 ant initialize  # or updatesystem
 ```

@@ -400,10 +400,10 @@ public class ProductDisplayService {
 ### In FlexibleSearch
 
 ```java
-// ❌ Dynamic attributes cannot be used in FlexibleSearch WHERE clause
+// Dynamic attributes cannot be used in FlexibleSearch WHERE clause
 String query = "SELECT {pk} FROM {Product} WHERE {displayName} = ?name"; // FAILS
 
-// ✅ Use persisted attributes for queries
+// Use persisted attributes for queries
 String query = "SELECT {pk} FROM {Product} WHERE {code} = ?code";
 List<ProductModel> products = flexibleSearchService.<ProductModel>search(query).getResult();
 
@@ -420,13 +420,13 @@ List<ProductModel> filtered = products.stream()
 Dynamic attributes are calculated on every access. Avoid repeated calls:
 
 ```java
-// ❌ Wrong: Multiple calculations
+// Wrong: Multiple calculations
 for (ProductModel product : products) {
     log.info("Name: {}", product.getDisplayName()); // Calculated
     log.info("Display: {}", product.getDisplayName()); // Calculated again
 }
 
-// ✅ Correct: Cache result
+// Correct: Cache result
 for (ProductModel product : products) {
     String displayName = product.getDisplayName(); // Calculated once
     log.info("Name: {}", displayName);
@@ -475,13 +475,13 @@ public class ExpensiveCalculationHandler
 Avoid dynamic attributes in batch processing when possible:
 
 ```java
-// ❌ Wrong: Dynamic attribute in loop
+// Wrong: Dynamic attribute in loop
 for (ProductModel product : allProducts) {
     String displayName = product.getDisplayName(); // Calculated 10,000 times
     // Process...
 }
 
-// ✅ Correct: Use persisted attributes or pre-calculate
+// Correct: Use persisted attributes or pre-calculate
 for (ProductModel product : allProducts) {
     String name = product.getName(); // From database
     String code = product.getCode(); // From database
@@ -492,7 +492,7 @@ for (ProductModel product : allProducts) {
 
 ## Best Practices
 
-### ✅ DO
+### DO
 - Use for calculated/derived values
 - Keep handlers lightweight and fast
 - Implement caching for expensive operations
@@ -504,7 +504,7 @@ for (ProductModel product : allProducts) {
 - Consider performance impact
 - Use for values that change frequently
 
-### ❌ DON'T
+### DON'T
 - Use for frequently queried attributes
 - Perform database queries in handlers (use services)
 - Store state in handler instances
@@ -521,11 +521,11 @@ for (ProductModel product : allProducts) {
 ### 1. Using in FlexibleSearch
 
 ```java
-// ❌ Wrong: Dynamic attribute in query
+// Wrong: Dynamic attribute in query
 String query = "SELECT {pk} FROM {Product} WHERE {displayName} LIKE ?pattern";
 // FAILS: displayName is not a database column
 
-// ✅ Correct: Query persisted attributes, filter in Java
+// Correct: Query persisted attributes, filter in Java
 String query = "SELECT {pk} FROM {Product}";
 List<ProductModel> products = flexibleSearchService.<ProductModel>search(query).getResult();
 List<ProductModel> filtered = products.stream()
@@ -536,14 +536,14 @@ List<ProductModel> filtered = products.stream()
 ### 2. Performance in Loops
 
 ```java
-// ❌ Wrong: Repeated calculation
+// Wrong: Repeated calculation
 for (ProductModel product : products) {
     if (product.getCalculatedValue() > threshold) { // Calculated
         log.info("Value: {}", product.getCalculatedValue()); // Calculated again
     }
 }
 
-// ✅ Correct: Calculate once
+// Correct: Calculate once
 for (ProductModel product : products) {
     Double value = product.getCalculatedValue(); // Calculated once
     if (value > threshold) {
@@ -555,13 +555,13 @@ for (ProductModel product : products) {
 ### 3. Null Handling
 
 ```java
-// ❌ Wrong: No null check
+// Wrong: No null check
 @Override
 public String get(ProductModel product) {
     return product.getCode() + " - " + product.getName(); // NPE if name is null
 }
 
-// ✅ Correct: Handle nulls
+// Correct: Handle nulls
 @Override
 public String get(ProductModel product) {
     if (product == null) {
@@ -636,5 +636,5 @@ class ProductDisplayNameHandlerTest {
 ## Resources
 
 - **SAP Commerce Documentation**: Dynamic Attributes
-- **Performance Tuning**: Help Portal → Performance
+- **Performance Tuning**: Help Portal -> Performance
 - **Caching Strategies**: Platform caching documentation

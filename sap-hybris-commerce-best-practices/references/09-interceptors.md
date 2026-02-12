@@ -14,10 +14,10 @@ Implement model lifecycle hooks to execute logic before/after model operations (
 
 ### Execution Order
 ```
-Create: InitDefaults → Prepare → Validate → Save
-Load: Load from DB → LoadInterceptor
-Update: Prepare → Validate → Save
-Remove: RemoveInterceptor → Delete
+Create: InitDefaults -> Prepare -> Validate -> Save
+Load: Load from DB -> LoadInterceptor
+Update: Prepare -> Validate -> Save
+Remove: RemoveInterceptor -> Delete
 ```
 
 ## Interceptor Types
@@ -475,7 +475,7 @@ public class AdvancedProductInterceptor implements PrepareInterceptor<ProductMod
 
 ## Best Practices
 
-### ✅ DO
+### DO
 - Keep interceptors lightweight and fast
 - Use appropriate interceptor type for task
 - Validate in ValidateInterceptor
@@ -487,7 +487,7 @@ public class AdvancedProductInterceptor implements PrepareInterceptor<ProductMod
 - Document business rules
 - Use conditional logic to minimize overhead
 
-### ❌ DON'T
+### DON'T
 - Perform heavy operations (database queries, external calls)
 - Modify other models without care
 - Throw generic exceptions
@@ -504,7 +504,7 @@ public class AdvancedProductInterceptor implements PrepareInterceptor<ProductMod
 ### 1. Infinite Loops
 
 ```java
-// ❌ Wrong: Causes infinite loop
+// Wrong: Causes infinite loop
 @Override
 public void onPrepare(ProductModel product, InterceptorContext ctx) 
         throws InterceptorException {
@@ -512,7 +512,7 @@ public void onPrepare(ProductModel product, InterceptorContext ctx)
     modelService.save(product); // Triggers interceptor again!
 }
 
-// ✅ Correct: Check if already modified
+// Correct: Check if already modified
 @Override
 public void onPrepare(ProductModel product, InterceptorContext ctx) 
         throws InterceptorException {
@@ -525,7 +525,7 @@ public void onPrepare(ProductModel product, InterceptorContext ctx)
 ### 2. Performance Issues
 
 ```java
-// ❌ Wrong: Heavy operation in interceptor
+// Wrong: Heavy operation in interceptor
 @Override
 public void onPrepare(ProductModel product, InterceptorContext ctx) 
         throws InterceptorException {
@@ -534,7 +534,7 @@ public void onPrepare(ProductModel product, InterceptorContext ctx)
     // Process orders...
 }
 
-// ✅ Correct: Use events for heavy operations
+// Correct: Use events for heavy operations
 @Override
 public void onPrepare(ProductModel product, InterceptorContext ctx) 
         throws InterceptorException {
@@ -553,7 +553,7 @@ public void onPrepare(ProductModel product, InterceptorContext ctx)
 ### 3. Transaction Issues
 
 ```java
-// ❌ Wrong: Modifying other models without transaction
+// Wrong: Modifying other models without transaction
 @Override
 public void onPrepare(ProductModel product, InterceptorContext ctx) 
         throws InterceptorException {
@@ -562,7 +562,7 @@ public void onPrepare(ProductModel product, InterceptorContext ctx)
     modelService.save(category); // May cause issues
 }
 
-// ✅ Correct: Be careful with cascading saves
+// Correct: Be careful with cascading saves
 @Override
 public void onPrepare(ProductModel product, InterceptorContext ctx) 
         throws InterceptorException {
@@ -618,6 +618,6 @@ class ProductValidateInterceptorTest {
 
 ## Resources
 
-- **Interceptor Documentation**: Help Portal → Interceptors
+- **Interceptor Documentation**: Help Portal -> Interceptors
 - **Model Lifecycle**: Platform documentation
 - **Performance Best Practices**: Tuning guide

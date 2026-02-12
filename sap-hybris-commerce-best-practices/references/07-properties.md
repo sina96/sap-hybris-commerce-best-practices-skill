@@ -15,7 +15,7 @@ Externalize configuration using properties files for environment-specific settin
 
 ### Property Resolution Order
 ```
-Environment Variables → local.properties → project.properties → advanced.properties
+Environment Variables -> local.properties -> project.properties -> advanced.properties
 ```
 
 ## Property Files
@@ -52,7 +52,7 @@ Located in: `[HYBRIS_HOME]/config/local.properties`
 db.url=jdbc:mysql://localhost:3306/hybris
 db.driver=com.mysql.jdbc.Driver
 db.username=hybris
-db.password=hybris123
+db.password=*****
 db.tableprefix=
 
 # Solr configuration
@@ -66,7 +66,7 @@ media.folder.root=/opt/hybris/media
 mail.smtp.server=smtp.gmail.com
 mail.smtp.port=587
 mail.smtp.user=noreply@mycompany.com
-mail.smtp.password=password123
+mail.smtp.password=********
 mail.use.tls=true
 
 # Custom application properties
@@ -470,7 +470,7 @@ public class SecureConfigService {
 
 ## Best Practices
 
-### ✅ DO
+### DO
 - Externalize all configuration to properties
 - Use meaningful property names with prefixes
 - Provide default values for optional properties
@@ -482,7 +482,7 @@ public class SecureConfigService {
 - Use different properties per environment
 - Encrypt sensitive values
 
-### ❌ DON'T
+### DON'T
 - Hardcode configuration in code
 - Commit sensitive data (passwords, API keys)
 - Use generic property names
@@ -499,11 +499,11 @@ public class SecureConfigService {
 ### 1. Missing Default Values
 
 ```java
-// ❌ Wrong: No default value
+// Wrong: No default value
 int timeout = configurationService.getConfiguration()
     .getInt("mycompany.api.timeout"); // Throws exception if missing
 
-// ✅ Correct: Provide default
+// Correct: Provide default
 int timeout = configurationService.getConfiguration()
     .getInt("mycompany.api.timeout", 5000);
 ```
@@ -511,10 +511,10 @@ int timeout = configurationService.getConfiguration()
 ### 2. Hardcoded Values
 
 ```java
-// ❌ Wrong: Hardcoded URL
+// Wrong: Hardcoded URL
 String apiUrl = "https://api.example.com";
 
-// ✅ Correct: Use property
+// Correct: Use property
 String apiUrl = configurationService.getConfiguration()
     .getString("mycompany.api.url");
 ```
@@ -522,10 +522,10 @@ String apiUrl = configurationService.getConfiguration()
 ### 3. Sensitive Data in Version Control
 
 ```properties
-# ❌ Wrong: Plain text password in git
+# Wrong: Plain text password in git
 db.password=secretpassword123
 
-# ✅ Correct: Use environment variable or encrypted value
+# Correct: Use environment variable or encrypted value
 db.password=${DB_PASSWORD}
 # Or
 db.password=ENC(encrypted-value)
@@ -565,6 +565,6 @@ class ServiceWithPropertiesTest extends ServicelayerTest {
 
 ## Resources
 
-- **Configuration Service**: Help Portal → Configuration
+- **Configuration Service**: Help Portal -> Configuration
 - **Property Files**: Platform documentation
 - **Environment Variables**: Deployment guide

@@ -465,7 +465,7 @@ public class TransactionalOrderListener extends AbstractEventListener<OrderPlace
 
 ## Best Practices
 
-### ✅ DO
+### DO
 - Use events for loose coupling
 - Keep event listeners lightweight
 - Handle exceptions in listeners
@@ -477,7 +477,7 @@ public class TransactionalOrderListener extends AbstractEventListener<OrderPlace
 - Use events for audit trails
 - Log event processing
 
-### ❌ DON'T
+### DON'T
 - Use events for synchronous workflows
 - Perform heavy operations in listeners
 - Throw unchecked exceptions from listeners
@@ -494,13 +494,13 @@ public class TransactionalOrderListener extends AbstractEventListener<OrderPlace
 ### 1. Exception Handling
 
 ```java
-// ❌ Wrong: Uncaught exception fails transaction
+// Wrong: Uncaught exception fails transaction
 @Override
 protected void onEvent(OrderPlacedEvent event) {
     sendEmail(event); // May throw exception
 }
 
-// ✅ Correct: Handle exceptions
+// Correct: Handle exceptions
 @Override
 protected void onEvent(OrderPlacedEvent event) {
     try {
@@ -515,14 +515,14 @@ protected void onEvent(OrderPlacedEvent event) {
 ### 2. Heavy Processing
 
 ```java
-// ❌ Wrong: Blocking operation in listener
+// Wrong: Blocking operation in listener
 @Override
 protected void onEvent(OrderPlacedEvent event) {
     // Blocks for 10 seconds
     externalService.syncOrder(event.getOrder());
 }
 
-// ✅ Correct: Async processing
+// Correct: Async processing
 @Override
 protected void onEvent(OrderPlacedEvent event) {
     executorService.submit(() -> {
@@ -534,7 +534,7 @@ protected void onEvent(OrderPlacedEvent event) {
 ### 3. Transaction Issues
 
 ```java
-// ❌ Wrong: Modifying models without transaction
+// Wrong: Modifying models without transaction
 @Override
 protected void onEvent(OrderPlacedEvent event) {
     OrderModel order = event.getOrder();
@@ -542,7 +542,7 @@ protected void onEvent(OrderPlacedEvent event) {
     modelService.save(order); // May fail outside transaction
 }
 
-// ✅ Correct: Use transaction template
+// Correct: Use transaction template
 @Override
 protected void onEvent(OrderPlacedEvent event) {
     transactionTemplate.execute(status -> {
@@ -631,6 +631,6 @@ class OrderEventIntegrationTest extends ServicelayerTest {
 
 ## Resources
 
-- **Event Service**: Help Portal → Event System
+- **Event Service**: Help Portal -> Event System
 - **Spring Events**: Spring Framework documentation
 - **Async Processing**: Platform threading documentation

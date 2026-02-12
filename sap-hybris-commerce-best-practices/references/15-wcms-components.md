@@ -92,7 +92,7 @@ INSERT_UPDATE ContentSlot;uid[unique=true];cmsComponents(uid,$contentCV);$conten
 
 ## Best Practices
 
-### ✅ DO
+### DO
 - Use localized attributes for content
 - Create reusable components
 - Use content slots for flexibility
@@ -104,7 +104,7 @@ INSERT_UPDATE ContentSlot;uid[unique=true];cmsComponents(uid,$contentCV);$conten
 - Cache component rendering
 - Use CMS restrictions
 
-### ❌ DON'T
+### DON'T
 - Hardcode content in JSPs
 - Skip localization
 - Create monolithic components
@@ -118,5 +118,5 @@ INSERT_UPDATE ContentSlot;uid[unique=true];cmsComponents(uid,$contentCV);$conten
 
 ## Resources
 
-- **WCMS Documentation**: Help Portal → WCMS
+- **WCMS Documentation**: Help Portal -> WCMS
 - **Component Development**: SAP Commerce documentation

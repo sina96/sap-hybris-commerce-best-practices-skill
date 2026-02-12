@@ -275,7 +275,7 @@ ProductModel product = ProductTestDataBuilder.aProduct()
 
 ## Testing Best Practices
 
-### ✅ DO
+### DO
 - Write tests for all services
 - Use meaningful test names
 - Follow AAA pattern (Arrange, Act, Assert)
@@ -287,7 +287,7 @@ ProductModel product = ProductTestDataBuilder.aProduct()
 - Test edge cases
 - Maintain test coverage
 
-### ❌ DON'T
+### DON'T
 - Skip tests
 - Test implementation details
 - Use production data
@@ -320,6 +320,6 @@ ant alltests -Dtestclasses.coverage=true
 
 ## Resources
 
-- **Testing Guide**: Help Portal → Testing
+- **Testing Guide**: Help Portal -> Testing
 - **JUnit 5**: junit.org/junit5
 - **Mockito**: mockito.org

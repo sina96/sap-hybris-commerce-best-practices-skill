@@ -10,7 +10,7 @@ Maintain high code quality through SOLID principles, design patterns, clean code
 Each class should have one reason to change.
 
 ```java
-// ❌ Wrong: Multiple responsibilities
+// Wrong: Multiple responsibilities
 public class ProductService {
     public void createProduct(ProductModel product) { }
     public void sendEmail(String to, String subject) { }
@@ -18,7 +18,7 @@ public class ProductService {
     public void syncToExternalSystem() { }
 }
 
-// ✅ Correct: Single responsibility
+// Correct: Single responsibility
 public class ProductService {
     public void createProduct(ProductModel product) { }
     public ProductModel getProduct(String code) { }
@@ -42,7 +42,7 @@ public class ExternalSyncService {
 Open for extension, closed for modification.
 
 ```java
-// ✅ Correct: Extensible design
+// Correct: Extensible design
 public interface PriceCalculationStrategy {
     double calculatePrice(ProductModel product, int quantity);
 }
@@ -81,7 +81,7 @@ public class PriceService {
 Subtypes must be substitutable for their base types.
 
 ```java
-// ✅ Correct: Proper inheritance
+// Correct: Proper inheritance
 public interface OrderValidator {
     ValidationResult validate(OrderModel order);
 }
@@ -114,7 +114,7 @@ public class StockValidator implements OrderValidator {
 Clients shouldn't depend on interfaces they don't use.
 
 ```java
-// ❌ Wrong: Fat interface
+// Wrong: Fat interface
 public interface ProductOperations {
     void create();
     void update();
@@ -125,7 +125,7 @@ public interface ProductOperations {
     void validate();
 }
 
-// ✅ Correct: Segregated interfaces
+// Correct: Segregated interfaces
 public interface ProductCrudOperations {
     void create();
     void update();
@@ -151,7 +151,7 @@ public interface ProductValidation {
 Depend on abstractions, not concretions.
 
 ```java
-// ✅ Correct: Depend on abstractions
+// Correct: Depend on abstractions
 @Service
 public class DefaultOrderService implements OrderService {
     
@@ -292,7 +292,7 @@ public class B2COrderProcessor extends AbstractOrderProcessor {
 ### 1. Meaningful Names
 
 ```java
-// ❌ Wrong
+// Wrong
 public class Mgr {
     public void proc(List<Obj> lst) {
         for (Obj o : lst) {
@@ -304,7 +304,7 @@ public class Mgr {
     }
 }
 
-// ✅ Correct
+// Correct
 public class OrderManager {
     public void processOrders(List<OrderModel> orders) {
         for (OrderModel order : orders) {
@@ -320,7 +320,7 @@ public class OrderManager {
 ### 2. Small Functions
 
 ```java
-// ✅ Correct: Small, focused functions
+// Correct: Small, focused functions
 @Service
 public class OrderService {
     
@@ -362,14 +362,14 @@ public class OrderService {
 ### 3. Comments
 
 ```java
-// ❌ Wrong: Obvious comments
+// Wrong: Obvious comments
 // Get the product
 ProductModel product = productService.getProduct(code);
 
 // Set the price
 product.setPrice(99.99);
 
-// ✅ Correct: Explain why, not what
+// Correct: Explain why, not what
 // Apply temporary promotional pricing for holiday sale
 product.setPrice(calculateHolidayPrice(product.getBasePrice()));
 
@@ -452,7 +452,7 @@ public class AuditedOrderService implements OrderService {
 
 ## Best Practices
 
-### ✅ DO
+### DO
 - Follow SOLID principles
 - Use design patterns appropriately
 - Write self-documenting code
@@ -464,7 +464,7 @@ public class AuditedOrderService implements OrderService {
 - Use dependency injection
 - Write testable code
 
-### ❌ DON'T
+### DON'T
 - Create god classes
 - Use magic numbers
 - Duplicate code

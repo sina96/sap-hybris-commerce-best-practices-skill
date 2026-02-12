@@ -68,7 +68,7 @@ Create JSP view templates for SAP Commerce storefronts using JSTL, Spring tags, 
 
 ## Best Practices
 
-### ✅ DO
+### DO
 - Use JSTL tags instead of scriptlets
 - Escape output to prevent XSS
 - Use Spring message tags for i18n
@@ -80,7 +80,7 @@ Create JSP view templates for SAP Commerce storefronts using JSTL, Spring tags, 
 - Test views in multiple browsers
 - Use template inheritance
 
-### ❌ DON'T
+### DON'T
 - Use Java scriptlets (<% %>)
 - Put business logic in JSPs
 - Hardcode text (use i18n)

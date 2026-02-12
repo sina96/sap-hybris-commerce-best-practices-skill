@@ -173,7 +173,7 @@ UPDATE Product;code[unique=true];name[lang=de];description[lang=de]
 
 # French
 UPDATE Product;code[unique=true];name[lang=fr];description[lang=fr]
-;PROD001;Nom du produit;Description française
+;PROD001;Nom du produit;Description francaise
 ```
 
 ## Media Import
@@ -421,7 +421,7 @@ public class DataExportService {
 
 ## Best Practices
 
-### ✅ DO
+### DO
 - Use INSERT_UPDATE for idempotent imports
 - Define macros for reusable values
 - Use meaningful variable names
@@ -433,7 +433,7 @@ public class DataExportService {
 - Handle errors gracefully
 - Version control ImpEx files
 
-### ❌ DON'T
+### DON'T
 - Use INSERT for data that may already exist
 - Hardcode catalog versions
 - Import without validation
@@ -449,34 +449,34 @@ public class DataExportService {
 
 ### 1. Missing Unique Keys
 ```impex
-# ❌ Wrong: No unique key
+# Wrong: No unique key
 INSERT_UPDATE Product;code;name
 ;PROD001;Product 1
 
-# ✅ Correct: Unique key specified
+# Correct: Unique key specified
 INSERT_UPDATE Product;code[unique=true];name
 ;PROD001;Product 1
 ```
 
 ### 2. Incorrect Reference Syntax
 ```impex
-# ❌ Wrong: Missing catalog version
+# Wrong: Missing catalog version
 INSERT_UPDATE Product;code[unique=true];primaryCategory(code)
 ;PROD001;CAT001
 
-# ✅ Correct: Full reference
+# Correct: Full reference
 INSERT_UPDATE Product;code[unique=true];primaryCategory(code,catalogVersion(catalog(id),version))
 ;PROD001;CAT001:Default:Staged
 ```
 
 ### 3. Circular Dependencies
 ```impex
-# ❌ Wrong: Circular reference
+# Wrong: Circular reference
 INSERT_UPDATE Category;code[unique=true];supercategories(code)
 ;CAT001;CAT002
 ;CAT002;CAT001
 
-# ✅ Correct: Proper hierarchy
+# Correct: Proper hierarchy
 INSERT_UPDATE Category;code[unique=true];supercategories(code)
 ;CAT001;
 ;CAT002;CAT001
@@ -484,11 +484,11 @@ INSERT_UPDATE Category;code[unique=true];supercategories(code)
 
 ### 4. Missing Catalog Version
 ```impex
-# ❌ Wrong: No catalog version
+# Wrong: No catalog version
 INSERT_UPDATE Product;code[unique=true];name
 ;PROD001;Product 1
 
-# ✅ Correct: Include catalog version
+# Correct: Include catalog version
 $catalogVersion=catalogVersion(catalog(id[default='Default']),version[default='Staged'])[unique=true]
 INSERT_UPDATE Product;code[unique=true];name;$catalogVersion
 ;PROD001;Product 1
@@ -498,7 +498,7 @@ INSERT_UPDATE Product;code[unique=true];name;$catalogVersion
 
 ### HAC Console
 1. Navigate to: http://localhost:9001/hac
-2. Console → ImpEx Import
+2. Console -> ImpEx Import
 3. Paste ImpEx script
 4. Click "Import content"
 5. Review results and errors
@@ -543,6 +543,6 @@ class ImpExImportTest extends ServicelayerTest {
 
 ## Resources
 
-- **HAC ImpEx Console**: http://localhost:9001/hac → Console → ImpEx Import
-- **ImpEx Syntax**: Help Portal → ImpEx
-- **Sample ImpEx**: Platform extensions → resources/impex
+- **HAC ImpEx Console**: http://localhost:9001/hac -> Console -> ImpEx Import
+- **ImpEx Syntax**: Help Portal -> ImpEx
+- **Sample ImpEx**: Platform extensions -> resources/impex

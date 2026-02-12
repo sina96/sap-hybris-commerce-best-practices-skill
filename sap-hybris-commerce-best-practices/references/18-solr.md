@@ -97,7 +97,7 @@ public SearchResult<ProductModel> searchWithFacets(String query) {
 
 ## Best Practices
 
-### ✅ DO
+### DO
 - Index regularly
 - Use facets for filtering
 - Optimize field types
@@ -109,7 +109,7 @@ public SearchResult<ProductModel> searchWithFacets(String query) {
 - Implement search analytics
 - Cache search results
 
-### ❌ DON'T
+### DON'T
 - Use embedded Solr in production
 - Skip index optimization
 - Index unnecessary fields
@@ -140,4 +140,4 @@ ant solrindex -Dincremental=true
 ## Resources
 
 - **Solr Documentation**: solr.apache.org
-- **SAP Commerce Solr**: Help Portal → Solr Integration
+- **SAP Commerce Solr**: Help Portal -> Solr Integration

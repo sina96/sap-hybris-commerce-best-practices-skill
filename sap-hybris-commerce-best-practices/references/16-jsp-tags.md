@@ -122,7 +122,7 @@ public class FormatPriceTag extends TagSupport {
 
 ## Best Practices
 
-### ✅ DO
+### DO
 - Use JSTL tags when possible
 - Create reusable custom tags
 - Document tag attributes
@@ -134,7 +134,7 @@ public class FormatPriceTag extends TagSupport {
 - Cache tag results when appropriate
 - Follow naming conventions
 
-### ❌ DON'T
+### DON'T
 - Put business logic in tags
 - Create complex tags
 - Skip error handling

@@ -8,14 +8,14 @@ Master SAP Commerce's type system for defining data models, relationships, and a
 ### Type System Hierarchy
 ```
 GenericItem (root)
-├── Item
-│   ├── Product
-│   ├── Category
-│   ├── Order
-│   ├── User
-│   └── [Custom Types]
-├── Relation
-└── EnumerationValue
+|-- Item
+|   |-- Product
+|   |-- Category
+|   |-- Order
+|   |-- User
+|   `-- [Custom Types]
+|-- Relation
+`-- EnumerationValue
 ```
 
 ### Type Categories
@@ -551,7 +551,7 @@ public class CustomProductModel extends ProductModel {
 
 ## Best Practices
 
-### ✅ DO
+### DO
 - Use meaningful type and attribute names
 - Add descriptions to types and attributes
 - Define indexes for frequently queried attributes
@@ -563,7 +563,7 @@ public class CustomProductModel extends ProductModel {
 - Run `ant clean all` after changes
 - Perform system update after build
 
-### ❌ DON'T
+### DON'T
 - Modify generated model classes
 - Use reserved type codes (< 10000)
 - Create circular type dependencies
@@ -579,24 +579,24 @@ public class CustomProductModel extends ProductModel {
 
 ### 1. Missing System Update
 ```bash
-# ❌ Wrong: Build without update
+# Wrong: Build without update
 ant clean all
 # Schema changes not applied!
 
-# ✅ Correct: Build and update
+# Correct: Build and update
 ant clean all
 ant initialize  # or updatesystem
 ```
 
 ### 2. Modifying Generated Classes
 ```java
-// ❌ Wrong: Modifying generated model
+// Wrong: Modifying generated model
 public class CustomProductModel extends ProductModel {
     // Custom method added here - will be overwritten!
     public String getDisplayName() { /* ... */ }
 }
 
-// ✅ Correct: Use service layer
+// Correct: Use service layer
 @Service
 public class ProductDisplayService {
     public String getDisplayName(ProductModel product) { /* ... */ }
@@ -605,22 +605,22 @@ public class ProductDisplayService {
 
 ### 3. Incorrect Default Values
 ```xml
-<!-- ❌ Wrong: Invalid syntax -->
+<!-- Wrong: Invalid syntax -->
 <defaultvalue>0</defaultvalue>
 
-<!-- ✅ Correct: Proper Java expression -->
+<!-- Correct: Proper Java expression -->
 <defaultvalue>Integer.valueOf(0)</defaultvalue>
 ```
 
 ### 4. Missing Indexes
 ```xml
-<!-- ❌ Wrong: No index on frequently queried field -->
+<!-- Wrong: No index on frequently queried field -->
 <attribute qualifier="externalId" type="java.lang.String">
     <persistence type="property"/>
     <modifiers optional="true" unique="true"/>
 </attribute>
 
-<!-- ✅ Correct: Add unique index -->
+<!-- Correct: Add unique index -->
 <attribute qualifier="externalId" type="java.lang.String">
     <persistence type="property"/>
     <modifiers optional="true" unique="true"/>
@@ -634,6 +634,6 @@ public class ProductDisplayService {
 
 ## Resources
 
-- **SAP Commerce Type System**: Help Portal → Type System
+- **SAP Commerce Type System**: Help Portal -> Type System
 - **items.xsd**: Schema definition for items.xml validation
 - **Platform items.xml**: Reference for standard types

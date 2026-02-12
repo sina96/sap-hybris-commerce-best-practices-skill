@@ -90,7 +90,7 @@ public class DefaultProductService implements ProductService {
 
 ### 2. Dependency Injection
 
-**✅ DO: Constructor Injection (Preferred)**
+**DO: Constructor Injection (Preferred)**
 ```java
 @Service
 public class DefaultOrderService implements OrderService {
@@ -111,7 +111,7 @@ public class DefaultOrderService implements OrderService {
 }
 ```
 
-**❌ DON'T: Field Injection**
+**DON'T: Field Injection**
 ```java
 @Service
 public class DefaultOrderService implements OrderService {
@@ -333,7 +333,7 @@ public class DefaultProductService implements ProductService {
 
 ## Best Practices
 
-### ✅ DO
+### DO
 - Use constructor injection for dependencies
 - Follow interface + implementation pattern
 - Use `@Service` annotation with meaningful bean names
@@ -345,7 +345,7 @@ public class DefaultProductService implements ProductService {
 - Use FlexibleSearch for queries (not direct SQL)
 - Keep services focused (Single Responsibility Principle)
 
-### ❌ DON'T
+### DON'T
 - Use field injection (`@Autowired` on fields)
 - Access Jalo layer directly
 - Hardcode configuration values
@@ -361,13 +361,13 @@ public class DefaultProductService implements ProductService {
 
 ### 1. Session Context Issues
 ```java
-// ❌ Wrong: Session context not set
+// Wrong: Session context not set
 public void processOrder(String orderCode) {
     OrderModel order = findByCode(orderCode);
     // May fail if session context not set
 }
 
-// ✅ Correct: Use SessionService or run in proper context
+// Correct: Use SessionService or run in proper context
 public void processOrder(String orderCode) {
     sessionService.executeInLocalView(() -> {
         OrderModel order = findByCode(orderCode);
@@ -378,14 +378,14 @@ public void processOrder(String orderCode) {
 
 ### 2. Lazy Loading Issues
 ```java
-// ❌ Wrong: Accessing lazy-loaded collection outside transaction
+// Wrong: Accessing lazy-loaded collection outside transaction
 @Transactional(readOnly = true)
 public List<ProductModel> getProducts(CategoryModel category) {
     return category.getProducts(); // Returns proxy
 }
 // Later access may fail: category.getProducts().size()
 
-// ✅ Correct: Initialize collection within transaction
+// Correct: Initialize collection within transaction
 @Transactional(readOnly = true)
 public List<ProductModel> getProducts(CategoryModel category) {
     List<ProductModel> products = category.getProducts();
@@ -396,14 +396,14 @@ public List<ProductModel> getProducts(CategoryModel category) {
 
 ### 3. Model Refresh
 ```java
-// ❌ Wrong: Using stale model
+// Wrong: Using stale model
 public void updatePrice(ProductModel product, double newPrice) {
     product.setPrice(newPrice);
     modelService.save(product);
     // product may be stale if modified elsewhere
 }
 
-// ✅ Correct: Refresh model before update
+// Correct: Refresh model before update
 public void updatePrice(ProductModel product, double newPrice) {
     modelService.refresh(product);
     product.setPrice(newPrice);
@@ -472,5 +472,5 @@ class DefaultProductServiceTest {
 ## Resources
 
 - **Spring Framework Documentation**: spring.io/docs
-- **SAP Commerce Service Layer**: Help Portal → Service Layer
+- **SAP Commerce Service Layer**: Help Portal -> Service Layer
 - **Effective Java** by Joshua Bloch: Best practices for Java development

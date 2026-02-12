@@ -8,11 +8,14 @@ Implement business logic using SAP Commerce Service Layer with Spring dependency
 ### Service Layer Architecture
 ```
 Controllers/Facades
-       ↓
+       |
+       v
    Services (Business Logic)
-       ↓
+       |
+       v
    DAOs (Data Access)
-       ↓
+       |
+       v
    Models (Data)
 ```
 
@@ -612,7 +615,7 @@ public class DefaultExternalSystemService implements ExternalSystemService {
 
 ## Best Practices
 
-### ✅ DO
+### DO
 - Use interface + implementation pattern
 - Use constructor injection
 - Keep services focused (Single Responsibility)
@@ -624,7 +627,7 @@ public class DefaultExternalSystemService implements ExternalSystemService {
 - Use DAOs for data access
 - Document public methods
 
-### ❌ DON'T
+### DON'T
 - Use field injection
 - Mix concerns in single service
 - Perform UI logic in services
@@ -724,6 +727,6 @@ class ProductServiceIntegrationTest extends ServicelayerTest {
 
 ## Resources
 
-- **Service Layer Documentation**: Help Portal → Service Layer
+- **Service Layer Documentation**: Help Portal -> Service Layer
 - **Spring Framework**: spring.io/docs
 - **Transaction Management**: Spring transaction documentation

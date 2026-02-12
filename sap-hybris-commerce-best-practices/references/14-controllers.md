@@ -162,7 +162,7 @@ public class GlobalExceptionHandler {
 
 ## Best Practices
 
-### ✅ DO
+### DO
 - Use appropriate HTTP methods
 - Validate input with @Valid
 - Return proper HTTP status codes
@@ -174,7 +174,7 @@ public class GlobalExceptionHandler {
 - Use constructor injection
 - Test controllers
 
-### ❌ DON'T
+### DON'T
 - Put business logic in controllers
 - Expose models directly
 - Return null

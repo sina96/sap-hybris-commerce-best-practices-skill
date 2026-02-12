@@ -7,8 +7,9 @@ Implement the Facade pattern to provide a simplified API for frontend layers usi
 
 ### Facade Pattern
 ```
-Controller → Facade → Service → DAO → Model
-              ↓
+Controller -> Facade -> Service -> DAO -> Model
+              |
+              v
             DTO (Data Transfer Object)
 ```
 
@@ -391,7 +392,7 @@ public class ProductDetailConverter implements Converter<ProductModel, ProductDe
 
 ## Best Practices
 
-### ✅ DO
+### DO
 - Use DTOs for all facade responses
 - Keep DTOs simple and serializable
 - Use converters/populators for transformation
@@ -403,7 +404,7 @@ public class ProductDetailConverter implements Converter<ProductModel, ProductDe
 - Handle null values gracefully
 - Test converters thoroughly
 
-### ❌ DON'T
+### DON'T
 - Expose models directly to frontend
 - Put business logic in facades
 - Create circular dependencies

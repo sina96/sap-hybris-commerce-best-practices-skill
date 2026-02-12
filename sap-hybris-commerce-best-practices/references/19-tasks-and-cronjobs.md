@@ -127,15 +127,15 @@ INSERT_UPDATE ProductSyncCronJob;code[unique=true];job(code);catalogCode;session
 ```
 
 ### Cron Expression Format
-
+ 
 ```
-┌───────────── second (0-59)
-│ ┌───────────── minute (0-59)
-│ │ ┌───────────── hour (0-23)
-│ │ │ ┌───────────── day of month (1-31)
-│ │ │ │ ┌───────────── month (1-12)
-│ │ │ │ │ ┌───────────── day of week (0-6, SUN-SAT)
-│ │ │ │ │ │
++---------------- second (0-59)
+| +-------------- minute (0-59)
+| | +------------ hour (0-23)
+| | | +---------- day of month (1-31)
+| | | | +-------- month (1-12)
+| | | | | +------ day of week (0-6, SUN-SAT)
+| | | | | |
 * * * * * *
 ```
 
@@ -302,7 +302,7 @@ private void startOnBackgroundProcessingNode(String taskName) {
 
 ## Best Practices
 
-### ✅ DO
+### DO
 
 **CronJobs:**
 - Make long-running jobs abortable
@@ -320,7 +320,7 @@ private void startOnBackgroundProcessingNode(String taskName) {
 - Use context field to pass parameters
 - Consider using for event-driven processing
 
-### ❌ DON'T
+### DON'T
 
 - Don't perform heavy operations in Task Service (use CronJobs)
 - Don't ignore error handling - always return appropriate PerformResult
@@ -408,7 +408,7 @@ public class ProductSyncJobIntegrationTest extends ServicelayerTest {
 
 ```bash
 # Execute CronJob via HAC
-# Platform → CronJobs → Find your job → Start
+# Platform -> CronJobs -> Find your job -> Start
 
 # Execute via ImpEx
 "#%impex.setCronJob(\"myCronJob\", true)"
@@ -426,6 +426,6 @@ if (defaultCronJobService.isAbortable(cronjob)) {
 
 ## Resources
 
-- **HAC**: http://localhost:9001/hac → Platform → CronJobs
-- **Backoffice**: System → CronJobs
-- **SAP Help**: help.sap.com → CronJobs and Task Service documentation
+- **HAC**: http://localhost:9001/hac -> Platform -> CronJobs
+- **Backoffice**: System -> CronJobs
+- **SAP Help**: help.sap.com -> CronJobs and Task Service documentation

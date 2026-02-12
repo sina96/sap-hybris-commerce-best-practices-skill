@@ -382,7 +382,7 @@ public class ValidationError {
 
 ## Best Practices
 
-### ✅ DO
+### DO
 - Use declarative validation when possible
 - Validate at appropriate layers
 - Provide clear error messages
@@ -394,7 +394,7 @@ public class ValidationError {
 - Validate early (fail fast)
 - Return structured validation results
 
-### ❌ DON'T
+### DON'T
 - Skip validation
 - Duplicate validation logic
 - Use generic error messages
@@ -408,6 +408,6 @@ public class ValidationError {
 
 ## Resources
 
-- **Validation Framework**: Help Portal → Validation
+- **Validation Framework**: Help Portal -> Validation
 - **JSR-303**: Bean Validation specification
 - **Spring Validation**: Spring Framework documentation

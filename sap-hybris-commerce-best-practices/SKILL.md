@@ -1,3 +1,8 @@
+---
+name: sap-hybris-commerce-best-practices
+description: When users ask about SAP Commerce Cloud (Hybris) best practices, provide actionable guidance, checklists, and examples.
+---
+
 # SAP Hybris Commerce Best Practices
 
 Comprehensive development guidelines and best practices for SAP Commerce Cloud (formerly Hybris).
